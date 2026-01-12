@@ -144,9 +144,9 @@ anim();
 /* =========================================================
    QRIS IN-PAGE (generate & tampil di web sendiri)
    ========================================================= */
-const PAKASIR_API = 'https://api.pakasir.com/v1/payment';   // endpoint resmi
-const API_KEY     = '9tOQaJudPr2faNpAAu0irRq43v4xR2cO';   // <-- ganti dengan Server-Key production Anda
-let   pollTimer   = null;                                     // penanda interval polling
+const PAKASIR_API = 'https://api.pakasir.com/v1/payment';
+const API_KEY     = '9tOQaJudPr2faNpAAu0irRq43v4xR2cO';   // ganti dengan Server-Key production Anda
+let   pollTimer   = null;
 
 /* ---------- event tombol "QRIS Dynamic (in-page)" ---------- */
 document.getElementById('btnGenQR').addEventListener('click', async () => {
