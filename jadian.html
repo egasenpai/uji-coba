@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surat Cinta Imut ᰔ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&family=Varela+Round&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --pink-love: #ff4d6d;
+            --pink-soft: #ff8fa3;
+            --pink-bg: #fff0f3;
+        }
+
+        * {
+            -webkit-user-select: none;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            box-sizing: border-box;
+            font-family: 'Varela Round', 'Quicksand', sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('https://raw.githubusercontent.com/gataubroicape-droid/dat1/main/uploads/082a26-1767938459159.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            padding: 30px;
+            border-radius: 40px;
+            box-shadow: 0 20px 50px rgba(255, 77, 109, 0.2);
+            width: 90%;
+            max-width: 380px;
+            text-align: center;
+            border: 6px solid white;
+            position: relative;
+            z-index: 10;
+            animation: bounceIn 1s ease;
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.5); opacity: 0; }
+            70% { transform: scale(1.05); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        #main-img {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            border: 5px solid var(--pink-soft);
+            object-fit: cover;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        #text-display {
+            font-size: 1.2rem;
+            color: #444;
+            min-height: 80px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .btn-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            height: 60px;
+            position: relative;
+        }
+
+        button {
+            padding: 14px 25px;
+            font-size: 1rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.2);
+        }
+
+        #btn-iya {
+            background: linear-gradient(45deg, var(--pink-love), var(--pink-soft));
+            color: white;
+            z-index: 10;
+        }
+
+        #btn-tidak {
+            background: #fff;
+            color: #aaa;
+            position: absolute;
+            right: 10px;
+            border: 2px solid #eee;
+        }
+
+        /* Tombol Home Baru */
+        #btn-home {
+            display: none;
+            margin-top: 15px;
+            background: #f8f9fa;
+            color: #333;
+            width: 100%;
+            border: 2px solid #eee;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+            padding: 12px;
+            font-size: 0.9rem;
+            border-radius: 20px;
+            transition: 0.3s;
+            font-weight: bold;
+        }
+
+        #btn-home:hover {
+            background: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.4);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 30px;
+            text-align: center;
+            max-width: 300px;
+            border: 4px solid var(--pink-soft);
+            animation: popUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .modal-content h2 { color: var(--pink-love); margin-top: 0; font-size: 1.2rem; }
+        .modal-content button { background: var(--pink-love); color: white; width: 100%; margin-top: 15px; }
+
+        #final-form {
+            display: none;
+            margin-top: 15px;
+            text-align: left;
+        }
+
+        input, textarea {
+            width: 100%;
+            margin: 8px 0;
+            padding: 12px;
+            border-radius: 15px;
+            border: 2px solid var(--pink-bg);
+            background: var(--pink-bg);
+            outline: none;
+            font-size: 0.9rem;
+        }
+
+        .msg-list {
+            max-height: 100px;
+            overflow-y: auto;
+            margin-top: 15px;
+            padding: 10px;
+            background: white;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            border: 2px dashed var(--pink-soft);
+        }
+
+        .heart-rain {
+            position: fixed;
+            top: -30px;
+            z-index: 1;
+            animation: fall linear forwards;
+            pointer-events: none;
+        }
+
+        @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
+        @keyframes popUp { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+        .wm { margin-top: 25px; font-size: 0.75rem; color: #999; font-weight: 700; opacity: 0.6; }
+    </style>
+</head>
+<body onclick="startEverything()">
+
+    <audio id="bgm" loop>
+        <source src="https://raw.githubusercontent.com/gataubroicape-droid/dat1/main/uploads/96e940-1767937830702.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="customAlert" class="modal">
+        <div class="modal-content">
+            <h2>Gak Boleh! 😡</h2>
+            <p>Ih kok ditekan! Jangan nakal ya, klik yang satunya aja! 💢💢</p>
+            <button onclick="closeModal()">Oke Sayang ᰔ</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <img id="main-img" src="https://raw.githubusercontent.com/gataubroicape-droid/dat3/main/uploads/641537-1767938327848.webp" alt="Avatar">
+        
+        <div id="text-display">Sentuh di mana saja untuk memulai... 👉👈</div>
+
+        <div class="btn-wrapper" id="btnArea" style="display: none;">
+            <button id="btn-iya" onclick="lanjutTeks()">Lanjut ✨</button>
+            <button id="btn-tidak" onmouseover="lari()" onclick="kenaMarah()">Enggak</button>
+        </div>
+
+        <div id="final-form">
+            <p style="font-size: 0.8rem; color: var(--pink-love); margin: 0;">Tulis pesan kamu di bawah:</p>
+            <input type="text" id="nama" placeholder="Nama Kamu (Boleh Anonim)">
+            <textarea id="pesan" placeholder="Ketik sesuatu yang manis..." rows="2"></textarea>
+            <button style="background: #4caf50; color:white; width:100%" onclick="kirim()">Kirim Pesan ᰔ</button>
+            
+            <a href="index.html" id="btn-home">
+               🏠 Back to Regal Shop
+            </a>
+
+            <div class="msg-list" id="msgList"></div>
+        </div>
+
+        <div class="wm">By regall chan</div>
+    </div>
+
+    <script>
+        const audio = document.getElementById('bgm');
+        const img = document.getElementById('main-img');
+        const display = document.getElementById('text-display');
+        const btnIya = document.getElementById('btn-iya');
+        const btnTidak = document.getElementById('btn-tidak');
+        const btnArea = document.getElementById('btnArea');
+        const finalForm = document.getElementById('final-form');
+        const modal = document.getElementById('customAlert');
+
+        const ekspresi = {
+            sedih: "https://raw.githubusercontent.com/gataubroicape-droid/dat3/main/uploads/641537-1767938327848.webp",
+            kesal: "https://raw.githubusercontent.com/gataubroicape-droid/dat4/main/uploads/70e738-1767938185373.webp",
+            cinta: "https://raw.githubusercontent.com/gataubroicape-droid/dat4/main/uploads/89e5b6-1767938139751.webp",
+            senang: "https://raw.githubusercontent.com/gataubroicape-droid/dat1/main/uploads/4a54b5-1767938270023.webp"
+        };
+
+        const daftarTeks = [
+            { teks: "Boleh aku jujur sesuatu?", exp: ekspresi.sedih },
+            { teks: "Deket kamu itu bikin aku tenang banget.", exp: ekspresi.senang },
+            { teks: "Aku selalu senyum tiap dapet kabar dari kamu.", exp: ekspresi.senang },
+            { teks: "Dan sekarang aku mau nanya satu hal...", exp: ekspresi.sedih },
+            { teks: "Kamu mau gak jadian sama aku? ᰔ", exp: ekspresi.sedih }
+        ];
+
+        let indexTeks = 0;
+        let started = false;
+
+        function startEverything() {
+            if(!started) {
+                audio.play();
+                btnArea.style.display = "flex";
+                lanjutTeks();
+                started = true;
+            }
+        }
+
+        function lanjutTeks() {
+            if (indexTeks < daftarTeks.length) {
+                let data = daftarTeks[indexTeks];
+                img.src = data.exp;
+                btnIya.innerText = (indexTeks === daftarTeks.length - 1) ? "Iya Mau! ✨" : "Lanjut ✨";
+                
+                display.innerHTML = "";
+                let i = 0;
+                function ngetik() {
+                    if (i < data.teks.length) {
+                        display.innerHTML += data.teks.charAt(i);
+                        i++;
+                        setTimeout(ngetik, 40);
+                    }
+                }
+                ngetik();
+                indexTeks++;
+            } else {
+                img.src = ekspresi.cinta;
+                display.innerHTML = "<span style='color:var(--pink-love)'>MAKASIH SAYANG! I LOVE YOU! ᰔ</span>";
+                btnArea.style.display = "none";
+                finalForm.style.display = "block";
+                hujanLove();
+                loadMessages();
+            }
+        }
+
+        function lari() {
+            img.src = ekspresi.kesal;
+            const x = Math.random() * (window.innerWidth - 120);
+            const y = Math.random() * (window.innerHeight - 60);
+            btnTidak.style.position = "fixed";
+            btnTidak.style.left = x + "px";
+            btnTidak.style.top = y + "px";
+        }
+
+        function kenaMarah() {
+            img.src = ekspresi.kesal;
+            modal.style.display = "flex";
+        }
+
+        function closeModal() {
+            modal.style.display = "none";
+        }
+
+        function hujanLove() {
+            setInterval(() => {
+                const h = document.createElement('div');
+                h.className = 'heart-rain';
+                h.innerHTML = 'ᰔ';
+                h.style.left = Math.random() * 100 + 'vw';
+                h.style.color = '#ff4d6d';
+                h.style.fontSize = Math.random() * 25 + 15 + 'px';
+                h.style.animationDuration = Math.random() * 3 + 2 + 's';
+                document.body.appendChild(h);
+                setTimeout(() => h.remove(), 5000);
+            }, 300);
+        }
+
+        function kirim() {
+            const n = document.getElementById('nama').value || 'Anonim';
+            const p = document.getElementById('pesan').value;
+            if(!p) return;
+            img.src = ekspresi.senang;
+            const db = JSON.parse(localStorage.getItem('db_final_cute')) || [];
+            db.push({nama: n, teks: p});
+            localStorage.setItem('db_final_cute', JSON.stringify(db));
+            document.getElementById('pesan').value = "";
+            
+            // Munculkan tombol home setelah kirim
+            document.getElementById('btn-home').style.display = "flex";
+            
+            loadMessages();
+        }
+
+        function loadMessages() {
+            const list = document.getElementById('msgList');
+            const db = JSON.parse(localStorage.getItem('db_final_cute')) || [];
+            list.innerHTML = db.reverse().map(m => `<div><b>${m.nama}:</b> ${m.teks}</div>`).join('');
+        }
+    </script>
+</body>
+</html>
